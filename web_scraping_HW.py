@@ -33,7 +33,7 @@ def movie_info(ID):
    return dct
 
 #open our text file which holds the ids to be used in our function.
-with open('imdb_ids.txt','rU') as f:
+with open('/Users/akilthomas/Desktop/DAT7/data/imdb_ids.txt','rU') as f:
     movie_titles = f.read()
     #Use the .split method to create an array of ids
     movie_titles = movie_titles.split()
