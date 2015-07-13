@@ -11,10 +11,16 @@ from sklearn.linear_model import LinearRegression
 from sklearn.cross_validation import train_test_split
 from sklearn import metrics
 import numpy as np
+import json
 #Reading and exploring our dagt
 yelp = pd.read_csv('yelp.csv', header = 0 )
 yelp.dtypes
 yelp.head()
+#parse the json
+with open('yelp.json') as data_file:
+    yelp2 = json.load(data_file)
+
+
 #Exploring relationships 
 sns.pairplot(yelp, x_vars=['cool','useful','funny'], y_vars='stars', size=5, aspect=0.7)
 sns.pairplot(yelp)
