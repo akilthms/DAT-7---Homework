@@ -16,7 +16,8 @@ Seasons = range(2014, 1979, -1)
 def getMyRookies(_Seasons):
     rookie_QBs = [] 
     for season in _Seasons: 
-        url = 'http://www.nfl.com/stats/categorystats?archive=false&conference=null&statisticCategory=PASSING&season=' + str(season) + '&seasonType=REG&experience=0&tabSeq=0&qualified=false&Submit=Go'
+        url = 'http://www.nfl.com/stats/categorystats?archive=false&conference=null&statisticCategory=PASSING&season=' 
+        + str(season) + '&seasonType=REG&experience=0&tabSeq=0&qualified=false&Submit=Go'
         r = requests.get(url)
         print r
         b = BeautifulSoup(r.text)
@@ -51,7 +52,7 @@ def getCollegeStats(Rookie):
     cols = row.find_all(name = 'td')
     pass_completions = cols[6].text
     attempts = cols[7].text
-    pass_completion_precentage  = cols[8].text
+    pass_completion_precentage  = cols[8].text 
     passing_yards = cols[9].text
     passing_yards_per_attempt = cols[10].text
     adjusted_passing_yards_per_attempt = cols[11].text
@@ -131,4 +132,9 @@ Database_pd_result.loc['Alex Smith'] = alex_smith
 
 Database_pd_result.to_csv('Rookies.csv')
 
-
+#-------------------------------------------------------------------Exploration 
+Database_pd_result.plot(kind = 'scatter', x = 'PCT', y = 'Rate') # We see a VERY Linear trend, as we expect
+Database_pd_result.plot(kind = 'scatter', x = 'Y/A', y = 'Rate') # A more concise linear trend  
+Database_pd_result.plot(kind = 'scatter', x = 'Yds', y = 'Rate') # As we expect we do not recieve a linear trend here
+Database_pd_result.plot(kind = 'scatter', x = 'TDs', y = 'Rate')
+Database_pd_result.plot(kind = 'scatter', x = 'Int', y = 'Rate')
